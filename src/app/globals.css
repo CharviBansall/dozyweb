@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --dozy-core: hsl(210, 80%, 60%);
+  --dozy-deep: hsl(235, 60%, 40%);
+  --dozy-bedtime: hsl(230, 85%, 73%);
+  --dozy-surface: hsl(210, 20%, 98%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--dozy-surface);
+  color: hsl(230, 35%, 12%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
