@@ -3,7 +3,7 @@
 import { ApplePage } from "@/components/apple/apple-ui";
 import { FaqSection } from "@/components/apple/faq-section";
 import { FooterSection } from "@/components/apple/footer-section";
-// import { PinnedShowcaseSection } from "@/components/apple/pinned-showcase-section";
+import { PinnedShowcaseSection } from "@/components/apple/pinned-showcase-section";
 import { GradientHeroBand } from "@/components/apple/gradient-hero-band";
 import { HeroSection } from "@/components/apple/hero-section";
 import { HighlightsSection } from "@/components/apple/highlights-section";
@@ -19,8 +19,7 @@ export function LandingPage() {
       <HeroSection />
       <StatsBand />
       <HighlightsSection />
-      {/* TODO: re-enable after GSAP useEffect + gsap.context cleanup is stable */}
-      {/* <PinnedShowcaseSection /> */}
+      <PinnedShowcaseSection />
       <PrivacySection />
       <FaqSection />
       <FooterSection />
