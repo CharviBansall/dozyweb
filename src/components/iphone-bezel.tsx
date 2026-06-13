@@ -3,6 +3,8 @@ import Image from "next/image";
 type IPhoneBezelProps = {
   priority?: boolean;
   className?: string;
+  screenSrc?: string;
+  screenAlt?: string;
 };
 
 /** Screen mask tuned for Bezel iPhone 17 Mist Blue portrait (1350×2760). */
@@ -16,7 +18,12 @@ const SCREEN_INSET = {
   scale: 1.045,
 } as const;
 
-export function IPhoneBezel({ priority = false, className = "" }: IPhoneBezelProps) {
+export function IPhoneBezel({
+  priority = false,
+  className = "",
+  screenSrc = "/devices/dozy-splash-screen.png",
+  screenAlt = "Dozy — reads your sleep, plans your nap",
+}: IPhoneBezelProps) {
   return (
     <div className={`relative w-full ${className}`}>
       <Image
@@ -24,7 +31,7 @@ export function IPhoneBezel({ priority = false, className = "" }: IPhoneBezelPro
         alt=""
         width={1350}
         height={2760}
-        className="relative block h-auto w-full object-contain drop-shadow-2xl"
+        className="relative block h-auto w-full object-contain dozy-device-shadow"
         priority={priority}
         aria-hidden
       />
@@ -41,10 +48,10 @@ export function IPhoneBezel({ priority = false, className = "" }: IPhoneBezelPro
         }}
       >
         <Image
-          src="/devices/dozy-app-screen.jpg"
-          alt="Dozy app — reads your sleep, plans your nap"
-          width={466}
-          height={1024}
+          src={screenSrc}
+          alt={screenAlt}
+          width={402}
+          height={874}
           className="h-full w-full object-cover object-center"
           priority={priority}
         />

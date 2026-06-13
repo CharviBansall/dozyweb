@@ -3,9 +3,9 @@ import { instrumentSerif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Dozy — Personalized naps from Apple Health",
+  title: "Dozy — Sleep Debt & Naps",
   description:
-    "Dozy reads your sleep, plans your nap, and wakes you gently. Built for iPhone and Apple Watch.",
+    "Dozy reads your sleep and tells you exactly how much rest you owe yourself — then finds the perfect nap to catch up. Powered entirely by Apple Health.",
 };
 
 export default function RootLayout({

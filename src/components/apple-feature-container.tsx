@@ -12,18 +12,18 @@ type FeatureItem = {
 const FEATURES: FeatureItem[] = [
   {
     id: "health",
-    title: "Apple Watch and iPhone",
-    body: "Dozy reads sleep from Apple Health on your iPhone — stages, duration, and trends — then recommends the right nap length and the best window to take it.",
+    title: "Built on Apple Health",
+    body: "Dozy works with the sleep data your iPhone and Apple Watch already collect. No extra tracking, no account, no servers — every calculation happens on your device.",
   },
   {
-    id: "watch",
-    title: "Apple Watch and Dozy",
-    body: "Start a nap from your wrist, track the timer on your Ultra, and get a gentle haptic when your power nap window ends — without unlocking your phone.",
+    id: "timer",
+    title: "A nap timer that wakes you gently",
+    body: "Start a nap from your iPhone or Apple Watch. Dozy counts down and wakes you with a gentle tap on the wrist — then credits the rest toward your sleep debt.",
   },
   {
-    id: "alerts",
-    title: "Nap window notifications",
-    body: "When your circadian dip lines up with low sleep debt, Dozy nudges you on iPhone and Watch so you can rest before the moment passes.",
+    id: "privacy",
+    title: "Private by design",
+    body: "Your health data never leaves your device for us. No ads, no analytics on your health, nothing to sell. What’s yours stays yours.",
   },
 ];
 
@@ -48,12 +48,22 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-export function AppleFeatureContainer() {
+type AppleFeatureContainerProps = {
+  phoneScreenSrc?: string;
+  phoneScreenAlt?: string;
+  watchSrc?: string;
+};
+
+export function AppleFeatureContainer({
+  phoneScreenSrc,
+  phoneScreenAlt,
+  watchSrc,
+}: AppleFeatureContainerProps = {}) {
   const [activeId, setActiveId] = useState(FEATURES[0].id);
 
   return (
     <div
-      className="w-full max-w-5xl rounded-[2rem] bg-[#f5f5f7] px-6 py-8 sm:px-10 sm:py-12"
+      className="w-full max-w-5xl rounded-[2rem] bg-[var(--dozy-surface-alt)] px-6 py-8 sm:px-10 sm:py-12"
       style={{
         fontFamily:
           '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
@@ -66,7 +76,7 @@ export function AppleFeatureContainer() {
             return (
               <div key={feature.id}>
                 {index > 0 ? (
-                  <div className="border-t border-neutral-300/80" />
+                  <div className="border-t border-[var(--dozy-ink)]/10" />
                 ) : null}
                 <button
                   type="button"
@@ -74,7 +84,7 @@ export function AppleFeatureContainer() {
                   className="flex w-full items-start justify-between gap-4 py-5 text-left"
                   aria-expanded={open}
                 >
-                  <span className="text-[1.05rem] font-semibold leading-snug text-neutral-950 sm:text-[1.15rem]">
+                  <span className="text-[1.05rem] font-semibold leading-snug text-[var(--dozy-ink)] sm:text-[1.15rem]">
                     {feature.title}
                   </span>
                   <Chevron open={open} />
@@ -85,7 +95,7 @@ export function AppleFeatureContainer() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-5 pr-6 text-[0.95rem] leading-relaxed text-neutral-600">
+                    <p className="pb-5 pr-6 text-[0.95rem] leading-relaxed text-[var(--dozy-muted)]">
                       {feature.body}
                     </p>
                   </div>
@@ -96,7 +106,11 @@ export function AppleFeatureContainer() {
         </div>
 
         <div className="relative flex min-h-[300px] items-center justify-center overflow-visible px-2 sm:min-h-[380px]">
-          <DeviceShowcase />
+          <DeviceShowcase
+            phoneScreenSrc={phoneScreenSrc}
+            phoneScreenAlt={phoneScreenAlt}
+            watchSrc={watchSrc}
+          />
         </div>
       </div>
     </div>

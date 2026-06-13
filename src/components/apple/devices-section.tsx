@@ -11,7 +11,7 @@ export function DevicesSection() {
           {DEVICES.map((device) => (
             <li
               key={device}
-              className="flex h-28 w-28 flex-col items-center justify-center rounded-2xl bg-[#f5f5f7] text-[17px] font-semibold text-[#1d1d1f] sm:h-32 sm:w-32"
+              className="flex h-28 w-28 flex-col items-center justify-center rounded-2xl bg-[var(--dozy-card)] text-[17px] font-semibold text-[var(--dozy-ink)] sm:h-32 sm:w-32"
             >
               {device}
             </li>

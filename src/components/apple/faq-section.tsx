@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Section, SectionHeadline } from "@/components/apple/apple-ui";
+import { BodyCopy, Section, SectionHeadline } from "@/components/apple/apple-ui";
 import { FAQ } from "@/lib/dozy-content";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -9,11 +9,16 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <Section id="faq" className="bg-[#f5f5f7]">
+    <Section id="faq">
       <ScrollReveal>
-        <SectionHeadline>Questions? Answers.</SectionHeadline>
-        <ul className="mt-12 divide-y divide-neutral-300/80 rounded-[1.75rem] bg-white px-6 sm:px-8">
-          {FAQ.map((item, index) => {
+        <SectionHeadline>Frequently asked questions</SectionHeadline>
+      </ScrollReveal>
+      <ScrollReveal
+        as="ul"
+        stagger={80}
+        className="mt-16 divide-y divide-[var(--dozy-ink)]/10 rounded-[20px] bg-[var(--dozy-card)] px-6 sm:mt-20 sm:px-8"
+      >
+        {FAQ.map((item, index) => {
             const open = openIndex === index;
             return (
               <li key={item.q}>
@@ -23,14 +28,14 @@ export function FaqSection() {
                   className="flex w-full items-start justify-between gap-4 py-5 text-left"
                   aria-expanded={open}
                 >
-                  <span className="text-[1.05rem] font-semibold text-[#1d1d1f] sm:text-[1.15rem]">
+                  <span className="text-[1.05rem] font-semibold text-[var(--dozy-ink)] sm:text-[1.15rem]">
                     {item.q}
                   </span>
                   <svg
                     width="12"
                     height="12"
                     viewBox="0 0 12 12"
-                    className={`mt-1.5 shrink-0 text-neutral-500 transition-transform ${open ? "rotate-180" : ""}`}
+                    className={`mt-1.5 shrink-0 text-[var(--dozy-muted)] transition-transform ${open ? "rotate-180" : ""}`}
                     aria-hidden
                   >
                     <path
@@ -46,15 +51,12 @@ export function FaqSection() {
                   className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-5 text-[17px] leading-[1.47] text-[#6e6e73]">
-                      {item.a}
-                    </p>
+                    <BodyCopy className="pb-6">{item.a}</BodyCopy>
                   </div>
                 </div>
               </li>
             );
           })}
-        </ul>
       </ScrollReveal>
     </Section>
   );

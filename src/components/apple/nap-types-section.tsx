@@ -6,28 +6,28 @@ export function NapTypesSection() {
   return (
     <Section>
       <ScrollReveal>
-        <SectionHeadline>More ways to make your move.</SectionHeadline>
-        <SectionSubhead>Choose your nap type.</SectionSubhead>
+        <SectionHeadline>More ways to catch up.</SectionHeadline>
+        <SectionSubhead>A nap for every kind of tired.</SectionSubhead>
         <BodyCopy className="mt-4 max-w-3xl">
-          Power, extended, and full-cycle naps — plus smart window alerts when
-          your circadian dip aligns with your schedule. Recommendations update as
-          your sleep debt changes.
+          Short, effective naps — from a quick power nap to a fuller recovery —
+          plus window alerts for the right moment to rest. Every recommendation
+          updates as your sleep debt changes.
         </BodyCopy>
         <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {NAP_TYPES.map((type) => (
             <li
               key={type.name}
-              className="flex flex-col items-center rounded-2xl bg-[#f5f5f7] px-3 py-8 text-center"
+              className="flex flex-col items-center rounded-2xl bg-[var(--dozy-card)] px-3 py-8 text-center"
             >
               <span
                 className="mb-4 h-14 w-14 rounded-full"
-                style={{ background: `linear-gradient(135deg, ${type.color}, #f5f5f7)` }}
+                style={{ background: `linear-gradient(135deg, ${type.color}, var(--dozy-card))` }}
                 aria-hidden
               />
-              <span className="text-[15px] font-semibold text-[#1d1d1f]">
+              <span className="text-[15px] font-semibold text-[var(--dozy-ink)]">
                 {type.name}
               </span>
-              <span className="mt-1 text-[13px] text-[#6e6e73]">{type.duration}</span>
+              <span className="mt-1 text-[13px] text-[var(--dozy-muted)]">{type.duration}</span>
             </li>
           ))}
         </ul>

@@ -1,17 +1,15 @@
 "use client";
 
 import { ApplePage } from "@/components/apple/apple-ui";
-import { DevicesSection } from "@/components/apple/devices-section";
 import { FaqSection } from "@/components/apple/faq-section";
 import { FooterSection } from "@/components/apple/footer-section";
+// import { PinnedShowcaseSection } from "@/components/apple/pinned-showcase-section";
 import { GradientHeroBand } from "@/components/apple/gradient-hero-band";
 import { HeroSection } from "@/components/apple/hero-section";
 import { HighlightsSection } from "@/components/apple/highlights-section";
-import { MetricsSection } from "@/components/apple/metrics-section";
-import { NapTypesSection } from "@/components/apple/nap-types-section";
-import { PlansSection } from "@/components/apple/plans-section";
-import { PricingSection } from "@/components/apple/pricing-section";
+import { PrivacySection } from "@/components/apple/privacy-section";
 import { SiteHeader } from "@/components/apple/site-header";
+import { StatsBand } from "@/components/apple/stats-band";
 
 export function LandingPage() {
   return (
@@ -19,14 +17,12 @@ export function LandingPage() {
       <SiteHeader />
       <GradientHeroBand />
       <HeroSection />
+      <StatsBand />
       <HighlightsSection />
-      <PricingSection />
-      <PlansSection />
-      <MetricsSection />
-      <NapTypesSection />
-      <PricingSection />
+      {/* TODO: re-enable after GSAP useEffect + gsap.context cleanup is stable */}
+      {/* <PinnedShowcaseSection /> */}
+      <PrivacySection />
       <FaqSection />
-      <DevicesSection />
       <FooterSection />
     </ApplePage>
   );

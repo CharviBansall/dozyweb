@@ -4,11 +4,11 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 
 export function MetricsSection() {
   return (
-    <Section className="bg-white">
+    <Section className="bg-[var(--dozy-surface)]">
       <ScrollReveal>
-        <SectionHeadline>Metrics that keep you on track.</SectionHeadline>
+        <SectionHeadline>Yours, and yours alone.</SectionHeadline>
         <SectionSubhead className="text-center sm:text-left">
-          Supercharge your nap with Apple Watch.
+          Built on Apple Health. Private by design.
         </SectionSubhead>
         <div className="mt-14 flex justify-center">
           <AppleFeatureContainer />

@@ -1,27 +1,36 @@
-import { Eyebrow, HeroSubtitle, HeroTitle, PrimaryLink, Section } from "@/components/apple/apple-ui";
+import {
+  BodyCopy,
+  Eyebrow,
+  HeroSubtitle,
+  HeroTitle,
+  PrimaryLink,
+  Section,
+} from "@/components/apple/apple-ui";
 import { DeviceShowcase } from "@/components/device-showcase";
 import { instrumentSerif } from "@/lib/fonts";
 
 export function HeroSection() {
   return (
-    <Section className="!pt-8 pb-8 sm:!pt-12">
-      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <Section className="!pt-12 !pb-16 sm:!pt-16 sm:!pb-20">
+      <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
         <div>
-          <Eyebrow>Find it on the App Store.</Eyebrow>
+          <Eyebrow>Rest smarter. Nap on time.</Eyebrow>
           <HeroTitle>
             <span className={instrumentSerif.className}>Dozy</span>
           </HeroTitle>
-          <HeroSubtitle>Reads your sleep. Plans your nap.</HeroSubtitle>
-          <p className="mt-6 text-[17px] leading-[1.47] text-[#6e6e73]">
-            Personalized nap recommendations from Apple Health — timing, duration,
-            and gentle wake alarms built around your body clock.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <PrimaryLink href="#download">Learn more</PrimaryLink>
-            <PrimaryLink href="#download">Download on the App Store</PrimaryLink>
+          <HeroSubtitle>Find a nap routine that works for you.</HeroSubtitle>
+          <BodyCopy className="mt-8 max-w-md">
+            Dozy reads your sleep and tells you exactly how much rest you owe
+            yourself — then finds the perfect nap to catch up. Powered entirely
+            by Apple Health.
+          </BodyCopy>
+          <div className="mt-10">
+            <PrimaryLink href="https://form.typeform.com/to/sT8SzcZB" external>
+              Join waitlist
+            </PrimaryLink>
           </div>
         </div>
-        <DeviceShowcase priority />
+        <DeviceShowcase priority glow float className="mx-auto lg:mx-0" />
       </div>
     </Section>
   );

@@ -4,11 +4,43 @@
   --dozy-core: hsl(210, 80%, 60%);
   --dozy-deep: hsl(235, 60%, 40%);
   --dozy-bedtime: hsl(230, 85%, 73%);
-  --dozy-surface: hsl(210, 20%, 98%);
+
+  /* Clean white, editorial palette */
+  --dozy-surface: #ffffff; /* white base */
+  --dozy-surface-alt: #f5f5f7; /* light gray for alternating sections */
+  --dozy-card: #f5f5f7; /* light gray cards */
+  --dozy-ink: #1d1d1f; /* near-black text */
+  --dozy-muted: #86868b; /* consistent Apple-style secondary body gray */
+  --dozy-accent: #5860d6; /* periwinkle accent */
+  --dozy-accent-ink: #ffffff;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 3.5rem;
+}
+
+section[id] {
+  scroll-margin-top: 3.5rem;
+}
+
+/* Shared media treatment for app screenshots and marketing images. */
+.dozy-media {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow:
+    0 24px 48px -28px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.dozy-body {
+  color: var(--dozy-muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.dozy-device-shadow {
+  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.14));
 }
 
 html,
@@ -19,7 +51,33 @@ body {
 body {
   margin: 0;
   background: var(--dozy-surface);
-  color: hsl(230, 35%, 12%);
+  color: var(--dozy-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Gentle floating motion for hero device mockups. */
+@keyframes dozy-float {
+  0%,
+  100% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.dozy-float {
+  animation: dozy-float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dozy-float {
+    animation: none;
+  }
 }

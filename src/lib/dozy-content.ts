@@ -1,19 +1,24 @@
 export const HIGHLIGHTS = [
   {
-    title: "3 nap types, from Power to Full Cycle.",
-    body: "Recommendations adapt to your sleep debt, circadian rhythm, and how much time you have — from 20 to 90 minutes.",
+    step: "1",
+    title: "Sleep Debt",
+    body: "Your accumulated shortfall over the last two weeks, in plain numbers. Tap any day to see exactly how you slept.",
+    ring: "#ff3b30", // red
+    progress: 0.7,
   },
   {
-    title: "Personalized nap windows.",
-    body: "Dozy analyzes 14 days of Apple Health sleep data and surfaces the best time to rest before you hit the afternoon crash.",
+    step: "2",
+    title: "Nap",
+    body: "A personalized nap length based on how much rest you owe — grounded in sleep science that favors short, effective naps.",
+    ring: "#0a84ff", // blue
+    progress: 0.45,
   },
   {
-    title: "Real-time metrics from Apple Watch.",
-    body: "Track your active nap on iPhone and Watch. See time remaining, sleep debt context, and when your window closes.",
-  },
-  {
-    title: "Gentle wake alarms.",
-    body: "Local notifications and haptics wake you at the right moment — without grogginess from oversleeping.",
+    step: "3",
+    title: "Restore",
+    body: "Finish a nap and Dozy logs it back to Apple Health, crediting your recovery so your sleep debt actually goes down.",
+    ring: "#ffcc00", // orange
+    progress: 0.73,
   },
 ] as const;
 
@@ -29,23 +34,27 @@ export const NAP_TYPES = [
 export const FAQ = [
   {
     q: "Where can I find Dozy?",
-    a: "Dozy lives on your iPhone. Connect Apple Health once, and your Home tab shows today’s recommendation, nap window, and sleep trends.",
+    a: "Dozy lives on your iPhone. Connect Apple Health once, and your Home tab shows your sleep debt, today’s nap window, and last night’s restorative sleep.",
   },
   {
     q: "Do I need an Apple Watch?",
-    a: "No. Dozy works with iPhone and Apple Health alone. With Apple Watch, you can start naps from your wrist and feel haptic wake cues.",
+    a: "No. Dozy works with iPhone and Apple Health alone. With Apple Watch, you can start naps from your wrist and feel a gentle tap when it’s time to wake.",
   },
   {
     q: "What Health data does Dozy use?",
-    a: "Dozy reads sleep analysis from Apple Health — stages, duration, and timing — to estimate sleep debt and circadian nap windows.",
+    a: "Dozy reads sleep analysis from Apple Health — stages, duration, and timing — to calculate your sleep debt and the right nap to recover.",
   },
   {
     q: "How are nap lengths chosen?",
-    a: "The recommendation engine weighs sleep debt, time of day, and your recent sleep trends to suggest power, extended, or full-cycle naps.",
+    a: "Dozy weighs how much rest you owe and the time of day, favoring short, effective naps that help you catch up without wrecking tonight’s sleep.",
   },
   {
     q: "Will Dozy wake me up?",
-    a: "Yes. Start a nap in Dozy and you’ll get a local notification at the end of your session. Allow notifications for reliable alarms.",
+    a: "Yes. Start a nap and Dozy counts down, then wakes you with a gentle tap — no jarring alarm — and credits the rest toward your sleep debt.",
+  },
+  {
+    q: "Is my data private?",
+    a: "Yes. Every calculation happens on your device. Your health data never leaves it for us — no ads, no analytics on your health, nothing to sell.",
   },
 ] as const;
 
