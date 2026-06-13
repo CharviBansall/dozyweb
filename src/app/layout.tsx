@@ -2,21 +2,29 @@ import type { Metadata } from "next";
 import { instrumentSerif } from "@/lib/fonts";
 import "./globals.css";
 
+const siteUrl = "https://www.appdozy.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.appdozy.com"),
+  metadataBase: new URL(siteUrl),
   title: "Dozy",
-  description:
-    "Rest smarter. Nap on time. Wake up sharp.",
+  description: "Rest smarter. Nap on time. Wake up sharp.",
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title: "Dozy",
     siteName: "Dozy",
     description: "Rest smarter. Nap on time. Wake up sharp.",
+    url: siteUrl,
     type: "website",
+    locale: "en_US",
     images: [
       {
         url: "/og.jpg",
-        width: 1024,
-        height: 537,
+        secureUrl: `${siteUrl}/og.jpg`,
+        width: 1200,
+        height: 629,
+        type: "image/jpeg",
         alt: "Dozy — Rest smarter. Nap on time.",
       },
     ],
@@ -25,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dozy",
     description: "Rest smarter. Nap on time. Wake up sharp.",
-    images: ["/og.jpg"],
+    images: [`${siteUrl}/og.jpg`],
   },
 };
 
