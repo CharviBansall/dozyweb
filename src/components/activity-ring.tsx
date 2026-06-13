@@ -31,6 +31,8 @@ export function ActivityRing({
   const [value, setValue] = useState(0);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const node = ref.current;
     if (!node) return;
 

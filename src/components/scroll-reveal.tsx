@@ -48,6 +48,8 @@ export function ScrollReveal({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const node = ref.current;
     if (!node) return;
 

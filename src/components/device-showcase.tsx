@@ -1,3 +1,5 @@
+"use client";
+
 import { IPhoneBezel } from "@/components/iphone-bezel";
 import { WatchBezel } from "@/components/watch-bezel";
 

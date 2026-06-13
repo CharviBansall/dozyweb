@@ -28,6 +28,8 @@ function CountUp({ value, prefix = "", suffix = "" }: Stat) {
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const node = ref.current;
     if (!node) return;
 

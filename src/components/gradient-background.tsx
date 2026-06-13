@@ -14,6 +14,7 @@ export function GradientBackground() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     setMounted(true);
   }, []);
 
