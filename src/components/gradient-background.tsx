@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { GrainGradient } from "@paper-design/shaders-react";
 
 /** Dozy brand palette: Core, Deep, Bedtime */
@@ -11,19 +11,48 @@ export const DOZY_GRADIENT_COLORS = [
 ] as const;
 
 export function GradientBackground() {
-  const [mounted, setMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [showShader, setShowShader] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window === "undefined") return;
-    setMounted(true);
+
+    const node = containerRef.current;
+    if (!node) return;
+
+    const mountShader = () => {
+      if (node.offsetWidth > 0 && node.offsetHeight > 0) {
+        setShowShader(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (mountShader()) return;
+
+    const observer = new ResizeObserver(() => {
+      if (mountShader()) observer.disconnect();
+    });
+    observer.observe(node);
+
+    const frame = window.requestAnimationFrame(() => {
+      if (mountShader()) observer.disconnect();
+    });
+
+    return () => {
+      observer.disconnect();
+      window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 z-0"
+      ref={containerRef}
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden
     >
-      {mounted ? (
+      <div className="dozy-hero-gradient absolute inset-0" />
+      {showShader ? (
         <GrainGradient
           style={{ height: "100%", width: "100%" }}
           colorBack="hsl(0, 0%, 0%)"

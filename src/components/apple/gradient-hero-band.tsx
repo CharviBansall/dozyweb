@@ -6,7 +6,7 @@ import { instrumentSerif } from "@/lib/fonts";
 /** Full-bleed gradient hero — Oura-style centered opener, Dozy colors. */
 export function GradientHeroBand() {
   return (
-    <section className="relative isolate flex min-h-[88vh] flex-col items-center justify-center overflow-hidden bg-black px-5 py-32 text-center sm:px-8 sm:py-40">
+    <section className="dozy-hero-gradient relative isolate flex min-h-[88vh] flex-col items-center justify-center overflow-hidden bg-black px-5 py-32 text-center sm:px-8 sm:py-40">
       <GradientBackground />
       <div className="relative z-10 flex flex-col items-center">
         <p className="text-[13px] font-semibold uppercase tracking-[0.22em] text-white/80">
