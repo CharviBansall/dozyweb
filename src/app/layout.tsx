@@ -6,26 +6,34 @@ const siteUrl = "https://www.appdozy.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Charvi Bansal",
-    template: "%s · Charvi Bansal",
-  },
-  description: "Product design for health, clarity, and calm interfaces.",
+  title: "Dozy",
+  description: "Rest smarter. Nap on time. Wake up sharp.",
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Charvi Bansal",
-    siteName: "Charvi Bansal",
-    description: "Product design for health, clarity, and calm interfaces.",
+    title: "Dozy",
+    siteName: "Dozy",
+    description: "Rest smarter. Nap on time. Wake up sharp.",
     url: siteUrl,
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/og.jpg",
+        secureUrl: `${siteUrl}/og.jpg`,
+        width: 1200,
+        height: 629,
+        type: "image/jpeg",
+        alt: "Dozy — Rest smarter. Nap on time.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Charvi Bansal",
-    description: "Product design for health, clarity, and calm interfaces.",
+    title: "Dozy",
+    description: "Rest smarter. Nap on time. Wake up sharp.",
+    images: [`${siteUrl}/og.jpg`],
   },
 };
 
