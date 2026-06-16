@@ -45,11 +45,11 @@ section[id] {
 
 /* Instant hero gradient — visible before WebGL shader mounts. */
 .dozy-hero-gradient {
-  background:
+  background-color: #000;
+  background-image:
     radial-gradient(ellipse 90% 70% at 12% 88%, hsl(210 80% 60% / 0.38), transparent 55%),
     radial-gradient(ellipse 80% 60% at 88% 12%, hsl(235 60% 40% / 0.42), transparent 52%),
-    radial-gradient(ellipse 55% 45% at 52% 42%, hsl(230 85% 73% / 0.22), transparent 48%),
-    #000;
+    radial-gradient(ellipse 55% 45% at 52% 42%, hsl(230 85% 73% / 0.22), transparent 48%);
 }
 
 html,

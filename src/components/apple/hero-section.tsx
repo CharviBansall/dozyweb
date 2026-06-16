@@ -7,6 +7,7 @@ import {
   Section,
 } from "@/components/apple/apple-ui";
 import { DeviceShowcase } from "@/components/device-showcase";
+import { APP_STORE_URL } from "@/lib/dozy-content";
 import { instrumentSerif } from "@/lib/fonts";
 
 export function HeroSection() {
@@ -25,8 +26,8 @@ export function HeroSection() {
             by Apple Health.
           </BodyCopy>
           <div className="mt-10">
-            <PrimaryLink href="https://form.typeform.com/to/sT8SzcZB" external>
-              Join waitlist
+            <PrimaryLink href={APP_STORE_URL} external>
+              Download on the App Store
             </PrimaryLink>
           </div>
         </div>

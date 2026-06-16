@@ -1,7 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useLayoutEffect, useRef, useState } from "react";
-import { GrainGradient } from "@paper-design/shaders-react";
 
 /** Dozy brand palette: Core, Deep, Bedtime */
 export const DOZY_GRADIENT_COLORS = [
@@ -9,6 +9,11 @@ export const DOZY_GRADIENT_COLORS = [
   "hsl(235, 60%, 40%)",
   "hsl(230, 85%, 73%)",
 ] as const;
+
+const GrainGradient = dynamic(
+  () => import("@paper-design/shaders-react").then((mod) => mod.GrainGradient),
+  { ssr: false },
+);
 
 export function GradientBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,10 +53,9 @@ export function GradientBackground() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      className="dozy-hero-gradient pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden
     >
-      <div className="dozy-hero-gradient absolute inset-0" />
       {showShader ? (
         <GrainGradient
           style={{ height: "100%", width: "100%" }}

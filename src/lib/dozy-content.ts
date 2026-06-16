@@ -59,3 +59,6 @@ export const FAQ = [
 ] as const;
 
 export const DEVICES = ["iPhone", "Apple Watch"] as const;
+
+export const APP_STORE_URL =
+  "https://apps.apple.com/us/app/dozy-sleep/id6779768698";
