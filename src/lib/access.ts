@@ -4,7 +4,7 @@ import {
   resolveEntitlement,
   type EntitlementRecord,
 } from "@/lib/entitlements";
-import { clearSessionCookie, readSession, setSessionCookie } from "@/lib/session";
+import { clearSessionCookie, readSession } from "@/lib/session";
 
 export async function requireEntitlement(): Promise<EntitlementRecord> {
   const session = await readSession();
@@ -18,11 +18,19 @@ export async function requireEntitlement(): Promise<EntitlementRecord> {
   });
 
   if (!recordIsEntitled(record) || !record) {
-    await clearSessionCookie();
+    // Cookie writes are only allowed in Route Handlers / Server Actions.
+    // Best-effort clear; never throw during RSC render (that surfaces as a
+    // generic "Application error" on /app after Checkout).
+    try {
+      await clearSessionCookie();
+    } catch {
+      // ignore — redirect still gates access
+    }
     redirect("/subscribe?reason=expired");
   }
 
-  await setSessionCookie(record);
+  // Do not refresh the session cookie here — setSessionCookie during layout/page
+  // render throws in production Next.js. Cookie is set by /api/checkout/complete.
   return record;
 }
 
