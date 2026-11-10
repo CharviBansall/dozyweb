@@ -31,6 +31,10 @@ yarn-error.log*
 
 # env files
 .env*
+!.env.example
+
+# local entitlement store (webhook fulfillment cache)
+.data/
 
 # vercel
 .vercel

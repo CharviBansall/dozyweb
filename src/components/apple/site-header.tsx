@@ -18,6 +18,12 @@ export function SiteHeader() {
           <a href="#faq" className="transition-colors hover:text-[var(--dozy-ink)]">
             FAQ
           </a>
+          <a
+            href="/subscribe"
+            className="font-medium text-[var(--dozy-ink)] transition-opacity hover:opacity-80"
+          >
+            Subscribe
+          </a>
         </nav>
       </div>
     </header>
