@@ -7,6 +7,7 @@ import { PinnedShowcaseSection } from "@/components/apple/pinned-showcase-sectio
 import { GradientHeroBand } from "@/components/apple/gradient-hero-band";
 import { HeroSection } from "@/components/apple/hero-section";
 import { HighlightsSection } from "@/components/apple/highlights-section";
+import { PricingSection } from "@/components/apple/pricing-section";
 import { PrivacySection } from "@/components/apple/privacy-section";
 import { SiteHeader } from "@/components/apple/site-header";
 import { StatsBand } from "@/components/apple/stats-band";
@@ -21,6 +22,7 @@ export function LandingPage() {
       <HighlightsSection />
       <PinnedShowcaseSection />
       <PrivacySection />
+      <PricingSection />
       <FaqSection />
       <FooterSection />
     </ApplePage>
