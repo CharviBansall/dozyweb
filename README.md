@@ -37,11 +37,12 @@ Apple Health stays on-device in the iOS app. For Oura / Garmin / Whoop cloud con
 | --- | --- |
 | `POST /api/junction/user` | Create/map Junction user |
 | `POST /api/junction/link-token` | Open Junction Link widget |
+| `POST /api/junction/demo-connect` | Sandbox synthetic provider (no wearable account) |
 | `GET /api/junction/sleep` | Normalized sleep summaries |
 | `POST /api/webhooks/junction` | Sleep created/updated webhooks |
 | `/junction/connected` | Link redirect landing |
 
-Whoop on Junction requires **bring-your-own Whoop OAuth app**. See Project store `docs/junction-setup.md`.
+Sandbox demo providers: `oura`, `whoop_v2`, `apple_health_kit`, `freestyle_libre`. **Garmin has no demo** — needs a real Garmin Connect login via Link. Whoop production also needs **bring-your-own Whoop OAuth**. See Project store `docs/junction-setup.md`.
 
 ### Dashboard / CLI setup
 
