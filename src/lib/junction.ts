@@ -7,6 +7,20 @@ export type JunctionEnvironment = "sandbox" | "production";
 
 export type JunctionProviderSlug = "oura" | "garmin" | "whoop_v2" | "whoop";
 
+/** Sandbox-only synthetic providers (no real wearable account required). */
+export type JunctionDemoProviderSlug =
+  | "oura"
+  | "whoop_v2"
+  | "apple_health_kit"
+  | "freestyle_libre";
+
+export const JUNCTION_DEMO_PROVIDERS: JunctionDemoProviderSlug[] = [
+  "oura",
+  "whoop_v2",
+  "apple_health_kit",
+  "freestyle_libre",
+];
+
 const SANDBOX_BASE = "https://api.sandbox.us.junction.com";
 const PRODUCTION_BASE = "https://api.us.junction.com";
 
@@ -156,6 +170,32 @@ export async function getSleepSummaries(options: {
 
   return junctionFetch<{ sleep: JunctionSleepSummary[] }>(
     `/v2/summary/sleep/${options.userId}?${params.toString()}`,
+  );
+}
+
+/**
+ * Attach a synthetic sandbox provider (no OAuth / no real device).
+ * Docs: https://docs.junction.com/wearables/providers/test_data
+ * Note: Garmin is not available as a demo provider.
+ */
+export async function connectDemoProvider(options: {
+  userId: string;
+  provider: JunctionDemoProviderSlug;
+}): Promise<{ success: boolean; detail: string }> {
+  const env = (process.env.JUNCTION_ENVIRONMENT || "sandbox").toLowerCase();
+  if (env === "production" || env === "prod") {
+    throw new Error("Demo provider connections are sandbox-only");
+  }
+
+  return junctionFetch<{ success: boolean; detail: string }>(
+    "/v2/link/connect/demo",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        user_id: options.userId,
+        provider: options.provider,
+      }),
+    },
   );
 }
 
