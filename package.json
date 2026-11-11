@@ -7,7 +7,8 @@
     "dev:clean": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test \"tests/*.test.mjs\""
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.46",

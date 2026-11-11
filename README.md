@@ -35,12 +35,24 @@ Apple Health stays on-device in the iOS app. For Oura / Garmin / Whoop cloud con
 
 | Route | Purpose |
 | --- | --- |
+| `POST /api/auth/apple` | Exchange an Apple identity token for an app session |
 | `POST /api/junction/user` | Create/map Junction user |
 | `POST /api/junction/link-token` | Open Junction Link widget |
 | `POST /api/junction/demo-connect` | Sandbox synthetic provider (no wearable account) |
 | `GET /api/junction/sleep` | Normalized sleep summaries |
 | `POST /api/webhooks/junction` | Sleep created/updated webhooks |
 | `/junction/connected` | Link redirect landing |
+
+### Who may call the Junction routes
+
+The iOS app signs in once with `POST /api/auth/apple` (`{ "identityToken": "<Sign in with Apple identity token>" }`). The server checks Apple's signature, issuer, audience (`APPLE_BUNDLE_ID`, default `charvibansall.dozy`) and expiry, then returns `{ userId, sessionToken, expiresAt }`. The session lasts 90 days and is signed with `SESSION_SECRET`.
+
+The app sends `Authorization: Bearer <sessionToken>` on `/api/junction/user`, `/link-token`, `/sleep` and `/demo-connect`. A session only works for the `clientUserId` it was issued for (401 without a valid session, 403 for someone else's id).
+
+- `JUNCTION_ENVIRONMENT=production`: a session is always required.
+- Sandbox: requests without a session are still accepted, so app builds that do not send one yet keep working. Set `JUNCTION_REQUIRE_AUTH=true` to require it there too.
+
+Run the checks with `npm test`.
 
 Sandbox demo providers: `oura`, `whoop_v2`, `apple_health_kit`, `freestyle_libre`. **Garmin has no demo** — needs a real Garmin Connect login via Link. Whoop production also needs **bring-your-own Whoop OAuth**. See Project store `docs/junction-setup.md`.
 
