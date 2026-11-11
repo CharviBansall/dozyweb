@@ -27,6 +27,21 @@ Copy `.env.example` → `.env.local` and set:
 - `STRIPE_PRICE_ID` — Price for $19/month
 - `NEXT_PUBLIC_APP_URL`
 - `SESSION_SECRET`
+- `JUNCTION_API_KEY` / `JUNCTION_ENVIRONMENT` — optional; cloud sleep sources (Oura / Garmin / Whoop via Junction)
+
+## Junction sleep sources (cloud)
+
+Apple Health stays on-device in the iOS app. For Oura / Garmin / Whoop cloud connect:
+
+| Route | Purpose |
+| --- | --- |
+| `POST /api/junction/user` | Create/map Junction user |
+| `POST /api/junction/link-token` | Open Junction Link widget |
+| `GET /api/junction/sleep` | Normalized sleep summaries |
+| `POST /api/webhooks/junction` | Sleep created/updated webhooks |
+| `/junction/connected` | Link redirect landing |
+
+Whoop on Junction requires **bring-your-own Whoop OAuth app**. See Project store `docs/junction-setup.md`.
 
 ### Dashboard / CLI setup
 
