@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkJunctionCaller } from "@/lib/app-auth";
 import {
   createLinkToken,
   DOZY_JUNCTION_PROVIDERS,
@@ -28,6 +29,14 @@ export async function POST(request: Request) {
         { error: "clientUserId required" },
         { status: 400 },
       );
+    }
+
+    const caller = checkJunctionCaller(
+      request.headers.get("authorization"),
+      clientUserId,
+    );
+    if (!caller.ok) {
+      return NextResponse.json({ error: caller.error }, { status: caller.status });
     }
 
     const user = await ensureJunctionUser(clientUserId);

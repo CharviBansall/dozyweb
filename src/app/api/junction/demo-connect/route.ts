@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkJunctionCaller } from "@/lib/app-auth";
 import {
   JUNCTION_DEMO_PROVIDERS,
   connectDemoProvider,
@@ -44,6 +45,14 @@ export async function POST(request: Request) {
         },
         { status: 400 },
       );
+    }
+
+    const caller = checkJunctionCaller(
+      request.headers.get("authorization"),
+      clientUserId,
+    );
+    if (!caller.ok) {
+      return NextResponse.json({ error: caller.error }, { status: caller.status });
     }
 
     const user = await ensureJunctionUser(clientUserId);

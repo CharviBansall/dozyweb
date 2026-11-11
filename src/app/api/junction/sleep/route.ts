@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkJunctionCaller } from "@/lib/app-auth";
 import { ensureJunctionUser, getSleepSummaries } from "@/lib/junction";
 import {
   getMappedJunctionUserId,
@@ -24,6 +25,14 @@ export async function GET(request: Request) {
         { error: "clientUserId and startDate are required" },
         { status: 400 },
       );
+    }
+
+    const caller = checkJunctionCaller(
+      request.headers.get("authorization"),
+      clientUserId,
+    );
+    if (!caller.ok) {
+      return NextResponse.json({ error: caller.error }, { status: caller.status });
     }
 
     let junctionUserId = await getMappedJunctionUserId(clientUserId);
