@@ -163,6 +163,125 @@ export async function verifyAppleIdentityToken(
   return { ok: true, userId: payload.sub };
 }
 
+// ---------------------------------------------------------------------------
+// Sign in with Google
+// ---------------------------------------------------------------------------
+
+const GOOGLE_ISSUERS = ["https://accounts.google.com", "accounts.google.com"];
+const GOOGLE_KEYS_URL = "https://www.googleapis.com/oauth2/v3/certs";
+/** Keeps Google accounts from ever colliding with Apple user ids. */
+export const GOOGLE_USER_PREFIX = "google_";
+
+let googleKeyCache: { keys: AppleJwk[]; fetchedAt: number } | null = null;
+
+async function resolveGoogleKey(
+  kid: string,
+  fetchKeys: AppleKeyFetcher | undefined,
+): Promise<AppleJwk | null> {
+  if (fetchKeys) {
+    return (await fetchKeys()).find((key) => key.kid === kid) ?? null;
+  }
+
+  const now = Date.now();
+  if (googleKeyCache) {
+    const age = now - googleKeyCache.fetchedAt;
+    const hit = googleKeyCache.keys.find((key) => key.kid === kid);
+    if (hit && age < APPLE_KEY_CACHE_MS) return hit;
+    // Google rotates keys too: refetch on an unknown kid, at most once a minute.
+    if (!hit && age < APPLE_KEY_MIN_REFETCH_MS) return null;
+  }
+
+  const response = await fetch(GOOGLE_KEYS_URL, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`Google key fetch failed (${response.status})`);
+  }
+  const body = (await response.json()) as { keys?: AppleJwk[] };
+  googleKeyCache = { keys: body.keys ?? [], fetchedAt: now };
+  return googleKeyCache.keys.find((key) => key.kid === kid) ?? null;
+}
+
+/** OAuth client ids the app's Google ID tokens are issued for (the iOS client id). */
+export function getAllowedGoogleAudiences(): string[] {
+  return (process.env.GOOGLE_CLIENT_ID || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+/**
+ * Verify a Google ID token: Google's RS256 signature, issuer, audience (the app's OAuth
+ * client id), and expiry. Returns a Dozy user id of the form `google_<sub>`.
+ *
+ * There is no default audience: until GOOGLE_CLIENT_ID is set, every token is refused.
+ */
+export async function verifyGoogleIdToken(
+  token: string,
+  options: {
+    fetchKeys?: AppleKeyFetcher;
+    now?: number;
+    audiences?: string[];
+  } = {},
+): Promise<AppleTokenResult> {
+  const allowed = options.audiences ?? getAllowedGoogleAudiences();
+  if (!allowed.length) {
+    return { ok: false, reason: "google sign in not configured" };
+  }
+
+  const parts = token.split(".");
+  if (parts.length !== 3 || parts.some((part) => !part)) {
+    return { ok: false, reason: "malformed token" };
+  }
+  const [headerSegment, payloadSegment, signatureSegment] = parts;
+
+  const header = parseSegment(headerSegment);
+  if (!header || header.alg !== "RS256" || typeof header.kid !== "string") {
+    return { ok: false, reason: "unsupported token header" };
+  }
+
+  const jwk = await resolveGoogleKey(header.kid, options.fetchKeys);
+  if (!jwk || jwk.kty !== "RSA") {
+    return { ok: false, reason: "unknown signing key" };
+  }
+
+  let signatureValid = false;
+  try {
+    signatureValid = verifySignature(
+      "RSA-SHA256",
+      Buffer.from(`${headerSegment}.${payloadSegment}`),
+      createPublicKey({ key: jwk, format: "jwk" }),
+      Buffer.from(signatureSegment, "base64url"),
+    );
+  } catch {
+    signatureValid = false;
+  }
+  if (!signatureValid) {
+    return { ok: false, reason: "bad signature" };
+  }
+
+  const payload = parseSegment(payloadSegment);
+  if (!payload) {
+    return { ok: false, reason: "malformed payload" };
+  }
+  if (typeof payload.iss !== "string" || !GOOGLE_ISSUERS.includes(payload.iss)) {
+    return { ok: false, reason: "wrong issuer" };
+  }
+
+  const audiences = Array.isArray(payload.aud) ? payload.aud : [payload.aud];
+  if (!audiences.some((aud) => typeof aud === "string" && allowed.includes(aud))) {
+    return { ok: false, reason: "wrong audience" };
+  }
+
+  const now = options.now ?? Date.now();
+  if (typeof payload.exp !== "number" || payload.exp * 1000 + CLOCK_LEEWAY_MS < now) {
+    return { ok: false, reason: "expired" };
+  }
+
+  if (typeof payload.sub !== "string" || !payload.sub) {
+    return { ok: false, reason: "missing subject" };
+  }
+  return { ok: true, userId: GOOGLE_USER_PREFIX + payload.sub };
+}
+
 function getSessionSecret(): string {
   const secret = process.env.SESSION_SECRET || process.env.STRIPE_SECRET_KEY;
   if (!secret) {
@@ -192,7 +311,7 @@ export function issueAppSession(
   };
 }
 
-/** Returns the Apple user id the session was issued for, or null if it is not valid. */
+/** Returns the user id (Apple, or `google_…`) the session was issued for, or null if it is not valid. */
 export function verifyAppSession(
   token: string,
   now: number = Date.now(),
