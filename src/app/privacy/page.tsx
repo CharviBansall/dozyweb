@@ -74,8 +74,8 @@ export default function PrivacyPage() {
         <H2>The short version</H2>
         <List>
           <li>
-            Sleep data from <B>Apple Health stays on your device</B>. Dozy never
-            uploads it.
+            Sleep and heart data from <B>Apple Health stays on your device</B>.
+            Dozy never uploads it.
           </li>
           <li>
             Signing in sends a sign-in token from Apple or Google to our server,
@@ -102,6 +102,12 @@ export default function PrivacyPage() {
           Health: your recorded sleep sessions and sleep stages (core, deep,
           REM). Dozy uses it to work out your sleep need, your sleep debt,
           tonight&rsquo;s bedtime, and whether a nap is worth taking.
+        </P>
+        <P>
+          With your permission, Dozy also reads your{" "}
+          <B>heart rate, heart rate variability and breathing rate</B> for the
+          hours you were asleep. It shows them beside your deep and REM sleep
+          and compares them with your own usual.
         </P>
         <P>
           With your permission, Dozy also writes to Apple Health: when you
