@@ -15,15 +15,15 @@ export function HeroSection() {
     <Section className="!pt-12 !pb-16 sm:!pt-16 sm:!pb-20">
       <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
         <div>
-          <Eyebrow>Rest smarter. Nap on time.</Eyebrow>
+          <Eyebrow>Free on iPhone and Apple Watch</Eyebrow>
           <HeroTitle>
             <span className={instrumentSerif.className}>Dozy</span>
           </HeroTitle>
-          <HeroSubtitle>Find a nap routine that works for you.</HeroSubtitle>
+          <HeroSubtitle>Find out how much sleep you owe.</HeroSubtitle>
           <BodyCopy className="mt-8 max-w-md">
-            Dozy reads your sleep and tells you exactly how much rest you owe
-            yourself — then finds the perfect nap to catch up. Powered entirely
-            by Apple Health.
+            Dozy reads the sleep you already track and tells you the one thing
+            to do about it today: a nap this afternoon, or an earlier bedtime
+            tonight.
           </BodyCopy>
           <div className="mt-10">
             <PrimaryLink href={APP_STORE_URL} external>

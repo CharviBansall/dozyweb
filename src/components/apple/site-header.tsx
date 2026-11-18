@@ -1,3 +1,5 @@
+import { APP_STORE_URL } from "../../lib/dozy-content";
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--dozy-ink)]/10 bg-[var(--dozy-surface)]/80 backdrop-blur-xl">
@@ -13,16 +15,18 @@ export function SiteHeader() {
             Overview
           </a>
           <a href="#showcase" className="transition-colors hover:text-[var(--dozy-ink)]">
-            Plans
+            Screens
           </a>
           <a href="#faq" className="transition-colors hover:text-[var(--dozy-ink)]">
             FAQ
           </a>
           <a
-            href="/subscribe"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-medium text-[var(--dozy-ink)] transition-opacity hover:opacity-80"
           >
-            Subscribe
+            Get the app
           </a>
         </nav>
       </div>

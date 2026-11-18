@@ -23,8 +23,8 @@ const SCREEN_INSET = {
 export function IPhoneBezel({
   priority = false,
   className = "",
-  screenSrc = "/devices/dozy-splash-screen.png",
-  screenAlt = "Dozy — reads your sleep, plans your nap",
+  screenSrc = "/devices/dozy-v2-today-screen.png",
+  screenAlt = "Dozy Today screen: today\u2019s one thing and the sleep rings",
 }: IPhoneBezelProps) {
   return (
     <div className={`relative w-full ${className}`}>
