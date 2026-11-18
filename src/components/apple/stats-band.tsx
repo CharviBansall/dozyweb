@@ -17,9 +17,9 @@ type Stat = {
 };
 
 const STATS: Stat[] = [
-  { value: 14, label: "days of sleep history analyzed" },
-  { value: 100, suffix: "%", label: "on-device — nothing leaves your phone" },
-  { value: 1, suffix: ":1", label: "nap credit toward your debt" },
+  { value: 14, label: "days of sleep in your debt" },
+  { value: 1, label: "thing to do about it today" },
+  { value: 0, prefix: "$", label: "free to download and use" },
 ];
 
 /** Animates a single integer from 0 to target once the band scrolls into view. */

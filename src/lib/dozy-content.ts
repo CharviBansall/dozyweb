@@ -2,22 +2,22 @@ export const HIGHLIGHTS = [
   {
     step: "1",
     title: "Sleep Debt",
-    body: "Your accumulated shortfall over the last two weeks, in plain numbers. Tap any day to see exactly how you slept.",
-    ring: "#ff3b30", // red
+    body: "What you owe over the last two weeks, in plain numbers. Short nights add to it; longer nights and naps pay it back.",
+    ring: "#ff3b30", // heart red
     progress: 0.7,
   },
   {
     step: "2",
-    title: "Nap",
-    body: "A personalized nap length based on how much rest you owe — grounded in sleep science that favors short, effective naps.",
-    ring: "#0a84ff", // blue
+    title: "Today\u2019s One Thing",
+    body: "A nap between 1:00 and 3:30 PM, or a bedtime worked back from your wake time. One clear step instead of a dashboard.",
+    ring: "#1a9bb0", // teal
     progress: 0.45,
   },
   {
     step: "3",
-    title: "Restore",
-    body: "Finish a nap and Dozy logs it back to Apple Health, crediting your recovery so your sleep debt actually goes down.",
-    ring: "#ffcc00", // orange
+    title: "Deep + REM",
+    body: "How much of last night was the restorative kind, measured against a 40% goal, next to your sleeping heart rate, HRV, and breathing.",
+    ring: "#7a5cf0", // violet
     progress: 0.73,
   },
 ] as const;
@@ -34,7 +34,7 @@ export const NAP_TYPES = [
 export const FAQ = [
   {
     q: "Where can I find Dozy?",
-    a: "Dozy lives on your iPhone. Connect Apple Health once, and your Home tab shows your sleep debt, today’s nap window, and last night’s restorative sleep.",
+    a: "Dozy lives on your iPhone. Connect Apple Health once, and the Today tab shows your sleep debt, the one thing to do about it, and last night’s deep and REM sleep.",
   },
   {
     q: "Do I need an Apple Watch?",
@@ -42,7 +42,7 @@ export const FAQ = [
   },
   {
     q: "What Health data does Dozy use?",
-    a: "Dozy reads sleep analysis from Apple Health — stages, duration, and timing — to calculate your sleep debt and the right nap to recover.",
+    a: "Dozy reads sleep analysis from Apple Health — stages, duration, and timing — to calculate your sleep debt and today’s plan. It also reads your overnight heart rate, heart rate variability, and breathing rate to show alongside your deep and REM sleep.",
   },
   {
     q: "How are nap lengths chosen?",
@@ -51,6 +51,10 @@ export const FAQ = [
   {
     q: "Will Dozy wake me up?",
     a: "Yes. Start a nap and Dozy counts down, then wakes you with a gentle tap — no jarring alarm — and credits the rest toward your sleep debt.",
+  },
+  {
+    q: "How much does Dozy cost?",
+    a: "Dozy is free. There is no subscription and nothing to buy in the app.",
   },
   {
     q: "Is my data private?",
