@@ -14,6 +14,13 @@ export function FooterSection() {
             >
               Contact us
             </a>
+            {" · "}
+            <a
+              href="/privacy"
+              className="underline-offset-2 transition-colors hover:text-[var(--dozy-ink)] hover:underline"
+            >
+              Privacy Policy
+            </a>
           </p>
           <p className="mt-3 text-center text-[12px] text-[var(--dozy-muted)]">
             Copyright © {new Date().getFullYear()} Dozy. Apple Watch and iPhone

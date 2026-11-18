@@ -372,3 +372,13 @@ export function checkJunctionCaller(
   }
   return { ok: true, authenticated: true };
 }
+
+/**
+ * The user id of a signed-in caller, or null. Unlike `checkJunctionCaller` this never
+ * lets an anonymous request through, whatever the environment.
+ */
+export function requireAppSession(authorizationHeader: string | null): string | null {
+  const match = /^Bearer\s+(\S+)$/i.exec((authorizationHeader || "").trim());
+  if (!match) return null;
+  return verifyAppSession(match[1]);
+}

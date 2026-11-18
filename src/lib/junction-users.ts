@@ -70,3 +70,12 @@ export async function saveJunctionUserMapping(
   await writeStore(store);
   return record;
 }
+
+export async function removeJunctionUserMapping(
+  clientUserId: string,
+): Promise<void> {
+  const store = await readStore();
+  if (!(clientUserId in store.byClientUserId)) return;
+  delete store.byClientUserId[clientUserId];
+  await writeStore(store);
+}

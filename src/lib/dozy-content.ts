@@ -54,7 +54,7 @@ export const FAQ = [
   },
   {
     q: "Is my data private?",
-    a: "Yes. Every calculation happens on your device. Your health data never leaves it for us — no ads, no analytics on your health, nothing to sell.",
+    a: "Yes. Every calculation happens on your device, and Apple Health data never leaves it. If you choose to connect Oura or Garmin, only that tracker’s sleep summaries pass through our server. No ads, no analytics on your health, nothing to sell.",
   },
 ] as const;
 
