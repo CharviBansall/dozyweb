@@ -137,6 +137,36 @@ export async function ensureJunctionUser(
   }
 }
 
+/** Look up a Junction user by Dozy's own user id, without creating one. */
+export async function findJunctionUserId(
+  clientUserId: string,
+): Promise<string | null> {
+  try {
+    const user = await junctionFetch<JunctionUser>(
+      `/v2/user/resolve/${encodeURIComponent(clientUserId)}`,
+    );
+    return user.user_id ?? null;
+  } catch (error) {
+    if ((error as Error & { status?: number }).status === 404) return null;
+    throw error;
+  }
+}
+
+/**
+ * Delete a Junction user. Junction disconnects their trackers and removes the
+ * data it holds for them. A user that is already gone counts as deleted.
+ */
+export async function deleteJunctionUser(userId: string): Promise<void> {
+  try {
+    await junctionFetch<unknown>(`/v2/user/${encodeURIComponent(userId)}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    if ((error as Error & { status?: number }).status === 404) return;
+    throw error;
+  }
+}
+
 export async function createLinkToken(options: {
   userId: string;
   provider?: JunctionProviderSlug;

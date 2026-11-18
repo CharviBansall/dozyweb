@@ -13,7 +13,7 @@ const FEATURES: FeatureItem[] = [
   {
     id: "health",
     title: "Built on Apple Health",
-    body: "Dozy works with the sleep data your iPhone and Apple Watch already collect. No extra tracking, no account, no servers — every calculation happens on your device.",
+    body: "Dozy works with the sleep data your iPhone and Apple Watch already collect. No extra tracking — every calculation happens on your device.",
   },
   {
     id: "timer",
@@ -23,7 +23,7 @@ const FEATURES: FeatureItem[] = [
   {
     id: "privacy",
     title: "Private by design",
-    body: "Your health data never leaves your device for us. No ads, no analytics on your health, nothing to sell. What’s yours stays yours.",
+    body: "Apple Health data stays on your device. Connecting Oura or Garmin is optional. No ads, no analytics on your health, nothing to sell.",
   },
 ];
 

@@ -6,9 +6,9 @@ import {
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 const POINTS = [
-  "Health data stays on your device",
-  "Seamless iCloud sync",
-  "No data uploads, ever",
+  "Apple Health data stays on your device",
+  "Oura and Garmin sync only if you connect them",
+  "Delete your account any time, in the app",
   "No ads, no tracking",
 ];
 
@@ -43,7 +43,7 @@ export function PrivacySection() {
           className="mt-8 text-center text-[clamp(1.35rem,3.5vw,1.85rem)] font-light leading-[1.2] tracking-[-0.01em] text-[var(--dozy-muted)]"
           style={{ fontFamily: displaySerif }}
         >
-          Your sleep data never leaves your device.
+          Your Apple Health data never leaves your device.
         </p>
       </ScrollReveal>
       <ScrollReveal
