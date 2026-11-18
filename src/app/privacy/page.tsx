@@ -82,7 +82,7 @@ export default function PrivacyPage() {
             so we can confirm it is you. We do not keep a database of accounts.
           </li>
           <li>
-            If you choose to connect <B>Oura, Garmin or Whoop</B>, your sleep summaries
+            If you choose to connect <B>Oura or Garmin</B>, your sleep summaries
             from that tracker pass through our server and our data partner,
             Junction.
           </li>
@@ -146,10 +146,10 @@ export default function PrivacyPage() {
           policies.
         </P>
 
-        <H2>Oura, Garmin and Whoop (optional)</H2>
+        <H2>Oura and Garmin (optional)</H2>
         <P>
           You can use Dozy with Apple Health alone. If you choose to connect an
-          Oura, Garmin or Whoop account in <B>You → Sleep Sources</B>:
+          Oura or Garmin account in <B>You → Sleep Sources</B>:
         </P>
         <List>
           <li>
@@ -198,7 +198,7 @@ export default function PrivacyPage() {
           <li>
             <B>Delete your account</B> in the app under You → Delete Account.
             This signs you out, clears Dozy&rsquo;s data from your phone,
-            disconnects any Oura, Garmin or Whoop account, and tells Junction to delete
+            disconnects any Oura or Garmin account, and tells Junction to delete
             the sleep data it holds for you. Junction disconnects trackers
             immediately and erases the data within about seven days.
           </li>
