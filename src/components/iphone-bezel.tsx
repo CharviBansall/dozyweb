@@ -11,13 +11,15 @@ type IPhoneBezelProps = {
 
 /** Screen mask tuned for Bezel iPhone 17 Mist Blue portrait (1350×2760). */
 const SCREEN_INSET = {
-  top: "2.45%",
-  left: "4.05%",
-  right: "4.05%",
-  bottom: "2.25%",
+  // The frame's transparent cutout starts 5.3% in from the sides and 2.5%
+  // from the top and bottom. The screen sits behind the frame and tucks a
+  // little under it, so the frame always stays visible.
+  top: "2.1%",
+  left: "4.7%",
+  right: "4.7%",
+  bottom: "2.1%",
   // Elliptical radius matches the inner display curve (w / h)
   borderRadius: "12.2% / 5.35%",
-  scale: 1.045,
 } as const;
 
 export function IPhoneBezel({
@@ -33,20 +35,18 @@ export function IPhoneBezel({
         alt=""
         width={1350}
         height={2760}
-        className="relative block h-auto w-full object-contain dozy-device-shadow"
+        className="pointer-events-none relative z-10 block h-auto w-full object-contain dozy-device-shadow"
         priority={priority}
         aria-hidden
       />
       <div
-        className="absolute z-10 overflow-hidden bg-black"
+        className="absolute z-0 overflow-hidden bg-black"
         style={{
           top: SCREEN_INSET.top,
           left: SCREEN_INSET.left,
           right: SCREEN_INSET.right,
           bottom: SCREEN_INSET.bottom,
           borderRadius: SCREEN_INSET.borderRadius,
-          transform: `scale(${SCREEN_INSET.scale})`,
-          transformOrigin: "center center",
         }}
       >
         <Image
